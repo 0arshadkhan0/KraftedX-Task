@@ -39,7 +39,7 @@
  ### Home page
  
 ![Screenshot 2025-04-18 181634](https://github.com/user-attachments/assets/b3a89d5b-8d09-49d8-bbf0-33eb98baaef0)
-### login
+### Custom Login Page
 
 ![Screenshot 2025-04-18 181543](https://github.com/user-attachments/assets/2cd7b0bb-67fc-4237-884e-5d914db4dd1b)
 ### Dashboard
