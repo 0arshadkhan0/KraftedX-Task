@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
-// Change from let to const
 const users: { email: string; password: string }[] = [];
 
-const SECRET = 'your_jwt_secret_key'; // Replace with process.env.JWT_SECRET in prod
+const SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key'; // Use environment variable for secret
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -18,8 +18,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'User already exists' }, { status: 409 });
   }
 
-  users.push({ email, password });
+  // Hash the password before saving
+  const hashedPassword = await bcrypt.hash(password, 10);
 
+  users.push({ email, password: hashedPassword });
+
+  // Create JWT token
   const token = jwt.sign({ email }, SECRET, { expiresIn: '1h' });
 
   return NextResponse.json({ token }, { status: 200 });
