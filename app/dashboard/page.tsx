@@ -15,7 +15,7 @@ export default function Dashboard() {
     } else {
       setLoading(false);
     }
-  }, []);
+  }, [router]); // Add `router` here to fix the warning
 
   if (loading) return <p className="text-center mt-10 text-gray-500">Loading...</p>;
 

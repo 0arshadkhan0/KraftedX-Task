@@ -1,83 +1,67 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Inter } from 'next/font/google';
 import Background from '../components/Background';
-import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Signup() {
-  const [name, setName] = useState('');
+const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'] });
+
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [shake, setShake] = useState(false);
+  const [showEmailMessage, setShowEmailMessage] = useState(false);
+  const [showPasswordMessage, setShowPasswordMessage] = useState(false);
   const router = useRouter();
 
-  const handleSignup = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setMessage('');
 
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    const res = await fetch('/api/signup', {
+    const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await res.json();
 
     if (res.ok) {
       localStorage.setItem('token', data.token);
-      setMessage('This website is for only this Task Purpose I have not connected to any database "Thank you"');
+      router.push('/dashboard');
     } else {
-      setError(data.message || 'Signup failed');
+      setError(data.message || 'Invalid email or password');
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
     }
   };
 
-  const handleInputChange = (setter: (val: string) => void) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setter(e.target.value);
+  useEffect(() => {
     if (error) setError('');
-  };
+  }, [email, password, error]); // Add error as a dependency
 
   return (
-    <div className="relative min-h-screen">
+    <div className={`relative min-h-screen ${inter.className}`}>
       <Background />
+
       <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="bg-black/30 backdrop-blur-3xl p-8 rounded-3xl shadow-2xl shadow-green-500/40 w-[90%] sm:w-[400px] md:w-[450px] border-2 border-green-500/30 transform hover:scale-105 transition-transform">
-          <h1 className="text-4xl font-extrabold text-center text-green-500 mb-6">Sign Up</h1>
+        <div
+          className={`bg-black/30 backdrop-blur-3xl p-12 rounded-3xl shadow-2xl shadow-indigo-500/50 w-[500px] md:w-[600px] border-2 border-purple-500/40 transform transition-transform ${shake ? 'animate-shake' : 'hover:scale-105'}`}
+        >
+          <h1 className="text-5xl font-extrabold text-center text-purple-700 mb-6">Login</h1>
 
-          <form onSubmit={handleSignup} className="space-y-5">
-            <div>
-              <label
-                htmlFor="name"
-                className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div
+              onMouseEnter={() => setShowEmailMessage(true)}
+              onMouseLeave={() => setShowEmailMessage(false)}
+            >
+              <p
+                className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${showEmailMessage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'}`}
               >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                value={name}
-                onChange={handleInputChange(setName)}
-                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/30 text-gray-800 ${
-                  error ? 'border-red-500' : 'border-gray-300'
-                }`}
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="email"
-                className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}
-              >
+                For tester admin email: <span className="font-semibold">admin&amp;#39;s@example.com</span>
+              </p>
+              <label htmlFor="email" className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}>
                 Email
               </label>
               <input
@@ -85,19 +69,22 @@ export default function Signup() {
                 id="email"
                 placeholder="Enter your email"
                 value={email}
-                onChange={handleInputChange(setEmail)}
-                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/30 text-gray-800 ${
-                  error ? 'border-red-500' : 'border-gray-300'
-                }`}
+                onChange={(e) => setEmail(e.target.value)}
+                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/30 text-gray-800 ${error ? 'border-red-500' : 'border-gray-300'}`}
                 required
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}
+            <div
+              onMouseEnter={() => setShowPasswordMessage(true)}
+              onMouseLeave={() => setShowPasswordMessage(false)}
+            >
+              <p
+                className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${showPasswordMessage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'}`}
               >
+                Admin password: <span className="font-semibold">password123</span>
+              </p>
+              <label htmlFor="password" className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}>
                 Password
               </label>
               <input
@@ -105,73 +92,28 @@ export default function Signup() {
                 id="password"
                 placeholder="Enter your password"
                 value={password}
-                onChange={handleInputChange(setPassword)}
-                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/30 text-gray-800 ${
-                  error ? 'border-red-500' : 'border-gray-300'
-                }`}
+                onChange={(e) => setPassword(e.target.value)}
+                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/30 text-gray-800 ${error ? 'border-red-500' : 'border-gray-300'}`}
                 required
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}
-              >
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={handleInputChange(setConfirmPassword)}
-                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 bg-white/30 text-gray-800 ${
-                  error ? 'border-red-500' : 'border-gray-300'
-                }`}
-                required
-              />
-            </div>
-
-            <AnimatePresence>
-              {error && (
-                <motion.p
-                  key="error-message"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3, type: 'spring' }}
-                  className="text-red-500 text-sm text-center -mt-4"
-                >
-                  {error}
-                </motion.p>
-              )}
-              {message && (
-                <motion.p
-                  key="success-message"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.3, type: 'spring' }}
-                  className="text-green-500 text-sm text-center -mt-4"
-                >
-                  {message}
-                </motion.p>
-              )}
-            </AnimatePresence>
+            {error && (
+              <p className="text-red-500 text-center animate-fade-in duration-300">{error}</p>
+            )}
 
             <button
               type="submit"
-              className="w-full p-3 mt-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+              className="w-full p-4 mt-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
             >
-              Sign Up
+              Login
             </button>
           </form>
 
           <p className="mt-4 text-center text-gray-200">
-            Already have an account?{' '}
-            <a href="/login" className="text-green-500 hover:text-green-600">
-              Login
+            Don&apos;t have an account?{' '}
+            <a href="/signup" className="text-purple-600 hover:text-purple-700">
+              Sign up
             </a>
           </p>
         </div>
