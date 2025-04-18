@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KraftedX-Task
 
-## Getting Started
+## Project Overview
 
-First, run the development server:
+**KraftedX-Task** is a web application that features a custom login page with JWT authentication and a protected dashboard. It is built using **Next.js** with **Tailwind CSS v4** for styling. This project demonstrates how to set up user authentication with JWT, protect routes, and manage login and logout functionality.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Custom Login Page**: A beautiful login page where users can enter their credentials.
+- **JWT Authentication**: Authentication is handled using JSON Web Tokens (JWT) to ensure secure login and session management.
+- **Protected Dashboard**: A dashboard that is accessible only to authenticated users.
+- **Tailwind CSS v4**: Styling is done with Tailwind CSS, allowing for a responsive, modern, and customizable UI.
+  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js**: A React framework used to build the project.
+- **Tailwind CSS v4**: For styling the UI components.
+- **JWT (JSON Web Token)**: For handling authentication.
+- **React**: For building the user interface.
+- **Node.js**: For backend API handling.
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/0arshadkhan0/KraftedX-Task.git
