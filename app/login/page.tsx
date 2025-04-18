@@ -59,7 +59,7 @@ export default function Login() {
               <p
                 className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${showEmailMessage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'}`}
               >
-                For tester admin email: <span className="font-semibold">admin&amp;#39;s@example.com</span>
+                For tester admin email: <span className="font-semibold">admin@example.com</span>
               </p>
               <label htmlFor="email" className={`block text-lg font-medium ${error ? 'text-red-500' : 'text-gray-200'}`}>
                 Email
