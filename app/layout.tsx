@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Liqwid',
   description: 'Custom login and dashboard',
+  icons: {
+    icon: '/fevicon.ico', //
+  },
 };
 
 export default function RootLayout({
