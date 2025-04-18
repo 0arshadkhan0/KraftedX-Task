@@ -46,4 +46,6 @@
 
 ![Screenshot 2025-04-18 181842](https://github.com/user-attachments/assets/459afc97-be59-45a6-96dd-ec9af9fa4bd8)
 
+## To see Live Project click link below
+Vercel: https://kraftedx-task-arshad.vercel.app/
    
