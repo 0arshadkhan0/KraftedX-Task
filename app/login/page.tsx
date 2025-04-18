@@ -39,7 +39,7 @@ export default function Login() {
 
   useEffect(() => {
     if (error) setError('');
-  }, [email, password]);
+  }, [email, password, error]); // Add error as a dependency
 
   return (
     <div className={`relative min-h-screen ${inter.className}`}>
@@ -47,9 +47,7 @@ export default function Login() {
 
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div
-          className={`bg-black/30 backdrop-blur-3xl p-12 rounded-3xl shadow-2xl shadow-indigo-500/50 w-[500px] md:w-[600px] border-2 border-purple-500/40 transform transition-transform ${
-            shake ? 'animate-shake' : 'hover:scale-105'
-          }`}
+          className={`bg-black/30 backdrop-blur-3xl p-12 rounded-3xl shadow-2xl shadow-indigo-500/50 w-[500px] md:w-[600px] border-2 border-purple-500/40 transform transition-transform ${shake ? 'animate-shake' : 'hover:scale-105'}`}
         >
           <h1 className="text-5xl font-extrabold text-center text-purple-700 mb-6">Login</h1>
 
@@ -59,11 +57,7 @@ export default function Login() {
               onMouseLeave={() => setShowEmailMessage(false)}
             >
               <p
-                className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${
-                  showEmailMessage
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 -translate-y-1 pointer-events-none'
-                }`}
+                className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${showEmailMessage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'}`}
               >
                 For tester admin email: <span className="font-semibold">admin@example.com</span>
               </p>
@@ -76,9 +70,7 @@ export default function Login() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/30 text-gray-800 ${
-                  error ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/30 text-gray-800 ${error ? 'border-red-500' : 'border-gray-300'}`}
                 required
               />
             </div>
@@ -88,11 +80,7 @@ export default function Login() {
               onMouseLeave={() => setShowPasswordMessage(false)}
             >
               <p
-                className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${
-                  showPasswordMessage
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 -translate-y-1 pointer-events-none'
-                }`}
+                className={`text-sm text-purple-400 mb-1 transition-all duration-300 ease-in-out ${showPasswordMessage ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'}`}
               >
                 Admin password: <span className="font-semibold">password123</span>
               </p>
@@ -105,9 +93,7 @@ export default function Login() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/30 text-gray-800 ${
-                  error ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full p-4 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white/30 text-gray-800 ${error ? 'border-red-500' : 'border-gray-300'}`}
                 required
               />
             </div>

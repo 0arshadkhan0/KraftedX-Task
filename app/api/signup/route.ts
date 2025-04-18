@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 
-let users: { email: string; password: string }[] = [];
+// Change from let to const
+const users: { email: string; password: string }[] = [];
 
 const SECRET = 'your_jwt_secret_key'; // Replace with process.env.JWT_SECRET in prod
 
