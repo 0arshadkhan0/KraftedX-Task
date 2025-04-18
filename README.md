@@ -20,8 +20,15 @@
 - **React**: For building the user interface.
 - **Node.js**: For backend API handling.
 
+# Admin login testing purpose of dashboard
+## email: admin@example.com
+## password: password123
+
+
 ## Installation
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/0arshadkhan0/KraftedX-Task.git
+
+   
