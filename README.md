@@ -1,3 +1,7 @@
+# Authentication Flow
+
+![authenticationf_flow](https://github.com/user-attachments/assets/f43dd17a-720a-4072-901e-6f3fc117d03f)
+
 # KraftedX-Task
 
 ## Project Overview
@@ -30,5 +34,16 @@
 1. Clone the repository:
    ```bash
    git clone https://github.com/0arshadkhan0/KraftedX-Task.git
+   
+## Project Screenshots
+ ### Home page
+ 
+![Screenshot 2025-04-18 181634](https://github.com/user-attachments/assets/b3a89d5b-8d09-49d8-bbf0-33eb98baaef0)
+### login
+
+![Screenshot 2025-04-18 181543](https://github.com/user-attachments/assets/2cd7b0bb-67fc-4237-884e-5d914db4dd1b)
+### Dashboard
+
+![Screenshot 2025-04-18 181842](https://github.com/user-attachments/assets/459afc97-be59-45a6-96dd-ec9af9fa4bd8)
 
    
