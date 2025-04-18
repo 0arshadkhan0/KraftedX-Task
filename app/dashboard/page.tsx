@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Background from '../components/Background'; // update path if needed
+import Background from '../components/Background'; 
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);

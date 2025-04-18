@@ -1,4 +1,4 @@
-'use client'; // Needed if you're using client-side features
+'use client'; 
 
 import Link from 'next/link';
 
@@ -7,7 +7,7 @@ export default function Navbar() {
     <div className="flex justify-between items-center px-6 py-4 z-10 relative">
       <h1 className="text-white text-2xl font-bold">LIQWID</h1>
       <div className="flex items-center space-x-4">
-        {/* Updated Link to /login */}
+       
         <Link href="/login">
           <span className="text-white cursor-pointer">LOGIN</span>
         </Link>
